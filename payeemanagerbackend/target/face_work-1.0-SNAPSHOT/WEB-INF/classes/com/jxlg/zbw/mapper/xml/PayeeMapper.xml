@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxlg.zbw.mapper.PayeeMapper">
+    <insert id="insert1" parameterType="com.jxlg.zbw.dao.Payee">
+	    insert into payee(
+            type_id
+            ,payee_name
+            ,account_nickname
+            ,payee_account_number
+            ,purpose_of_transfer_id
+            ,message)
+        select
+            a.type_id
+            ,#{payee_name}
+            ,#{account_nickname}
+            ,#{payee_account_number}
+            ,d.purpose_of_transfer_id
+            ,#{message}
+        from (select type_id from payee_type_tbl where type_message = #{type_message}) as a,
+        (select purpose_of_transfer_id from purpose_of_transfer_tbl where purpose_of_transfer_type = #{purpose_of_transfer_type}) as d
+    </insert>
+
+    <insert id="insert2" parameterType="com.jxlg.zbw.dao.Payee">
+        insert into payee(
+            type_id
+            ,payee_name
+            ,account_nickname
+            ,to_account_type
+            ,bank_id
+            ,branch_code
+            ,branch_number
+            ,currency_id
+            ,purpose_of_transfer_id)
+        select
+            a.type_id
+            ,#{payee_name}
+            ,#{account_nickname}
+            ,#{to_account_type}
+            ,b.bank_id
+            ,#{branch_code}
+            ,#{branch_number}
+            ,c.currency_id
+            ,d.purpose_of_transfer_id
+        from (select type_id from payee_type_tbl where type_message = #{type_message}) as a,
+        (select bank_id from bank_tbl where bank_name = #{bank_name}) as b,
+        (select currency_id from currency_tbl where currency_type = #{currency_type}) as c,
+        (select purpose_of_transfer_id from purpose_of_transfer_tbl where purpose_of_transfer_type = #{purpose_of_transfer_type}) as d
+    </insert>
+
+    <select id="findAll" resultType="com.jxlg.zbw.dao.Payee">
+        select a.payee_id
+            ,b.type_message
+            ,a.payee_name
+            ,a.account_nickname
+            ,a.payee_account_number
+            ,a.to_account_type
+            ,c.bank_name
+            ,a.branch_code
+            ,a.branch_number
+            ,d.currency_type
+            ,e.purpose_of_transfer_type
+            ,a.message
+            from payee a
+        left join payee_type_tbl b on a.type_id = b.type_id
+        left join bank_tbl c on a.bank_id = c.bank_id
+        left join currency_tbl d on a.currency_id = d.currency_id
+        left join purpose_of_transfer_tbl e on a.purpose_of_transfer_id = e.purpose_of_transfer_id
+        order by a.payee_id
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from payee where payee_id = #{payee_id}
+    </delete>
+</mapper>

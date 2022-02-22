@@ -1,0 +1,18 @@
+<div class="col-md-8">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Payee ID</th>
+        <th>Payee Type</th>
+        <th>Payee Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of pageInfo">
+        <td>{{p.payee_id}}</td><br>
+        <td>{{p.type_message}}</td><br>
+        <td>{{p.payee_name}}</td><br>
+      </tr>
+    </tbody>
+  </table>
+</div>

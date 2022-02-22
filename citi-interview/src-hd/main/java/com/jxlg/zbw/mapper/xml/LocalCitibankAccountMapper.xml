@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxlg.zbw.mapper.LocalCitibankAccountMapper">
+
+    <insert id="insert" parameterType="LocalCitibankAccount" useGeneratedKeys="true" keyProperty="payee_id">
+      INSERT INTO local_citibank_account (payee_id,
+                                payee_type,
+                                payee_name,
+                                account_nickname,
+                                payee_account_number,
+                                purpose_of_transfer,
+                                message)
+              VALUES   (#{payee_id},
+                          #{payee_type},
+                          #{payee_name},
+                          #{account_nickname},
+                          #{payee_account_number},
+                          #{purpose_of_transfer},
+                          #{message})
+    </insert>
+</mapper>

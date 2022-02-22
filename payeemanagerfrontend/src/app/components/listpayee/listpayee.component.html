@@ -1,0 +1,21 @@
+<div class="col-md-8">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Payee ID</th>
+        <th>Payee Type</th>
+        <th>Payee Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of data">
+        <td>{{p.payee_id}}</td>
+        <td>{{p.type_message}}</td>
+        <td>{{p.payee_name}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <ul class="pagination" id="pageination">
+  </ul>
+</div>
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxlg.zbw.mapper.PayeeTypeTblMapper">
+
+    <select id="findAll" resultType="com.jxlg.zbw.dao.PayeeTypeTbl">
+      select * from payee_type_tbl
+    </select>
+
+    <select id="findIdByValue" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select type_id from payee_type_tbl where type_message = #{type_message}
+    </select>
+
+    <select id="findValueById" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select type_message from payee_type_tbl where type_id = #{type_id}
+    </select>
+</mapper>

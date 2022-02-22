@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxlg.zbw.mapper.CurrencyTblMapper">
+
+    <select id="findAll" resultType="com.jxlg.zbw.dao.CurrencyTbl">
+      select * from currency_tbl
+    </select>
+
+    <select id="findIdByValue" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select currency_id from currency_tbl where currency_type = #{currency_type}
+    </select>
+
+    <select id="findValueById" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select currency_type from currency_tbl where currency_id = #{currency_id}
+    </select>
+</mapper>

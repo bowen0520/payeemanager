@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>NewPayeeInfo</title>
+</head>
+<body>
+<div style="margin: 5%">
+    <table th:object="${payee}">
+        <tr>
+            <td>Payee type:</td>
+            <td th:text="*{type_message}"></td>
+        </tr>
+        <tr>
+            <td>Payee name:</td>
+            <td th:text="*{payee_name}"></td>
+        </tr>
+        <tr>
+            <td>Account Nickname:</td>
+            <td th:text="*{account_nickname}"></td>
+        </tr>
+        <tr th:if="*{payee_account_number}">
+            <td>Payee account number:</td>
+            <td th:text="*{payee_account_number}"></td>
+        </tr>
+        <tr th:if="*{to_account_type}">
+            <td>To Account:</td>
+            <td th:text="*{to_account_type}"></td>
+        </tr>
+        <tr th:if="*{bank_name}">
+            <td>Bank:</td>
+            <td th:text="*{bank_name}"></td>
+        </tr>
+        <tr th:if="*{branch_code}">
+            <td>Branch Code-Account No.:</td>
+            <td th:text="*{branch_code}+'-'+*{branch_number}"></td>
+        </tr>
+        <tr th:if="*{purpose_of_transfer_type}">
+            <td>Purpose Of Transfer:</td>
+            <td th:text="*{purpose_of_transfer_type}"></td>
+        </tr>
+        <tr th:if="*{currency_type}">
+            <td>Currency:</td>
+            <td th:text="*{currency_type}"></td>
+        </tr>
+        <tr th:if="*{message}">
+            <td>Message:</td>
+            <td th:text="*{message}"></td>
+        </tr>
+    </table>
+    <a href="/add/payee" style="color: dodgerblue">ADD ANOTHER PAYEE</a>
+</div>
+</body>
+</html>

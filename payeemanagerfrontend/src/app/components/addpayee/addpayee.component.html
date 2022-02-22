@@ -1,0 +1,75 @@
+<div class="col-md-8">
+  <div class="col-md-8">ADD A PAYEE</div>
+  <div class="col-md-8">Please enter the information about your new payee</div>
+
+  <div class="col-md-8">
+    <br>Payee Type:<br>
+    <select (change)="display()" [(ngModel)]="payeeType">
+      <option>Select a payee type ...</option>
+      <option *ngFor="let pt of payeetype">{{pt.type_message}}</option>
+    </select><br><br>
+  </div>
+
+  <div class="col-md-8 " [hidden]="isHiddenLCA">
+    <form>
+      Payee type:<br/>
+      <select name="type_message" [(ngModel)]="payee1.type_message">
+        <option value="Local Citibank Account">Local Citibank Account</option>
+      </select>
+      <br/>
+      Payee name:<br/>
+      <input type="text" name="payee_name" [(ngModel)]="payee1.payee_name"><br/>
+      Account Nickname:<br/>
+      <input type="text" name="account_nickname" [(ngModel)]="payee1.account_nickname"><br/>
+      Payee account number:<br/>
+      <input type="text" name="payee_account_number" [(ngModel)]="payee1.payee_account_number"><br/>
+      Purpose Of Transfer:<br/>
+      <select type="text" name='purpose_of_transfer_type' [(ngModel)]="payee1.purpose_of_transfer_type">
+        <option value="{{p.purpose_of_transfer_type}}" *ngFor="let p of purpose">{{p.purpose_of_transfer_type}}</option>
+      </select>
+      <br/>
+      Message(Optional):<br/>
+      <input type="text" name="message" [(ngModel)]="payee1.message"><br/>
+      <br/>
+      <button type="submit" class="btn btn-primary" style="color: dodgerblue" (click)="onSubmit1()">NEXT</button>
+    </form>
+  </div>
+
+  <div class="col-md-8 " [hidden]="isHiddenLNCA">
+    <form>
+      Payee type:<br/>
+      <select name="type_message" [(ngModel)]="payee2.type_message">
+        <option value="Local Non-Citibank Account">Local Non-Citibank Account</option>
+      </select>
+      <br/>
+      Payee name:<br/>
+      <input type="text" name="payee_name" [(ngModel)]="payee2.payee_name"><br/>
+      Account Nickname:<br/>
+      <input type="text" name="account_nickname" [(ngModel)]="payee2.account_nickname"><br/>
+      To Account:<br/>
+      <label><input name="to_account_type" type="radio" value="Banking Account" checked [(ngModel)]="payee2.to_account_type"/>Banking Account</label>
+      <label><input name="to_account_type" type="radio" value="Credit Card Account" [(ngModel)]="payee2.to_account_type"/>Credit Card Account</label>
+      <br/>
+      Bank:<br/>
+      <select type="text" name='bank_name' [(ngModel)]="payee2.bank_name">
+        <option value="{{b.bank_name}}" *ngFor="let b of bank">{{b.bank_name}}</option>
+      </select>
+      <br/>
+      Brance Code(Field 1)-Account No.(Field 2):<br/>
+      <input type="text" name="branch_code" [(ngModel)]="payee2.branch_code">&nbsp;
+      <input type="text" name="branch_number" [(ngModel)]="payee2.branch_number"><br/>
+      Purpose Of Transfer:<br/>
+      <select type="text" name='purpose_of_transfer_type' [(ngModel)]="payee2.purpose_of_transfer_type">
+        <option value="{{p.purpose_of_transfer_type}}" *ngFor="let p of purpose">{{p.purpose_of_transfer_type}}</option>
+      </select>
+      <br/>
+      Currency:<br/>
+      <select type="text" name='currency_type' [(ngModel)]="payee2.currency_type">
+        <option value="{{c.currency_type}}" *ngFor="let c of currency">{{c.currency_type}}</option>
+      </select>
+      <br/>
+      <br/>
+      <button type="submit" style="color: dodgerblue" (click)="onSubmit2()">NEXT</button>
+    </form>
+  </div>
+</div>
